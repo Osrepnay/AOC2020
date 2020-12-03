@@ -1,13 +1,20 @@
 package com.adventofcode
 
 import scala.io.Source
+import scala.util.{Failure, Success, Using}
 
 object Puz3{
 
 	def main(args: Array[String]): Unit = {
-		val lines=(Source fromURL getClass.getResource("/input3.txt")).
-		 	mkString("").split("\n").map(_.split("").toList).toList
-		println(slopeTrees(lines, 1, 1)*slopeTrees(lines, 1, 3)*slopeTrees(lines, 1, 5)*slopeTrees(lines, 1, 7)*slopeTrees(lines, 2, 1))
+		val lines=Using(Source fromURL getClass.getResource("/input3.txt")){source =>
+		 	source.mkString("").split("\n").map(_.split("").toList).toList}
+		lines match {
+			case Success(lines) =>
+				println(slopeTrees(lines, 1, 1)*slopeTrees(lines, 1, 3)*slopeTrees(lines, 1, 5)*
+					slopeTrees(lines, 1, 7)*slopeTrees(lines, 2, 1))
+			case Failure(stacktrace) =>
+				println("Unable to read file.")
+		}
 	}
 
 	def slopeTrees(lines: List[List[String]], down: Int, right: Int): Long = {
