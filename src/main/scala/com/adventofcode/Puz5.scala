@@ -19,8 +19,8 @@ object Puz5{
 			case Success(passes) =>
 				val list=passes.map(pass => (divNum(pass.take(7), (0 until 128).toList)*8)+
 					divNum(pass.takeRight(3), (0 until 8).toList)).sorted
-				println(for(num <- list(1) until list.last
-					if !list.contains(num) && list.contains(num-1) && list.contains(num+1)) yield num)
+				println((for(num <- list(1) until list.last
+					if !list.contains(num) && list.contains(num-1) && list.contains(num+1)) yield num).head)
 			case Failure(e)	=>
 				println("Unable to read file.")
 		}
