@@ -19,7 +19,7 @@ object Puz8{
 					).getOrElse(Integer.MIN_VALUE) match{
 						case Integer.MIN_VALUE =>
 							false
-						case num: Int =>
+						case _: Int =>
 							true
 					})
 				}
@@ -34,7 +34,7 @@ object Puz8{
 							).getOrElse(Integer.MIN_VALUE) match {
 								case Integer.MIN_VALUE =>
 									false
-								case num: Int =>
+								case _: Int =>
 									true
 							})
 					}
