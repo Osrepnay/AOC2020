@@ -29,15 +29,4 @@ object Puz13 {
 
 	def modularInverse(num1: Long, num2: Long): Long = (BigInt(num1) modInverse num2).toLong
 
-	def extendedEuclidean(num1: Long, num2: Long): (Long, Long, Long) = {
-		if(num1 == 0) {
-			(num2, 0, 1)
-		} else {
-			val quotient = num2 / num1
-			val remainder = num2 % num1
-			val result = extendedEuclidean(remainder, num1)
-			(result._1, result._3 - quotient * result._2, result._2)
-		}
-	}
-
 }
