@@ -9,7 +9,7 @@ object Puz15 {
 
 	def main(args: Array[String]): Unit = {
 		val startingInputs = Using(Source.fromURL(getClass.getResource("/input15.txt"))){
-			source => source.mkString.split(",").map(_.toLong).toList
+			source => source.mkString.split(",").map(_.toInt).toList
 		}
 		startingInputs match {
 			case Success(startingInputs) =>
@@ -21,16 +21,16 @@ object Puz15 {
 	}
 
 	@tailrec
-	def doRounds(indices: Map[Long, List[Int]], lastInput: Long, counter: Long): Long = {
+	def doRounds(indices: Map[Int, List[Int]], lastInput: Int, counter: Int): Int = {
 		if(counter >= 30000000) {
 			lastInput
 		} else {
 			val idxs = indices(lastInput).sortWith(_ > _)
-			val add = if(idxs.length > 1) (idxs.head - idxs(1)).toLong else 0L
+			val add = if(idxs.length > 1) (idxs.head - idxs(1)) else 0
 			if(indices.contains(add)) {
-				doRounds(indices.updated(add, (counter.toInt :: indices(add)).take(2)), add, counter + 1)
+				doRounds(indices.updated(add, (counter :: indices(add)).take(2)), add, counter + 1)
 			} else {
-				doRounds(indices + (add -> List(counter.toInt)), add, counter + 1)
+				doRounds(indices + (add -> List(counter)), add, counter + 1)
 			}
 		}
 	}
