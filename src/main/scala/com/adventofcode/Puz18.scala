@@ -8,8 +8,9 @@ object Puz18 {
 
 	def main(args: Array[String]): Unit = {
 		val expressions = Using(Source.fromURL(getClass.getResource("/input18.txt"))) {
-			source => source.mkString.split("\n").map(expression =>
-				expression.replace(" ", "").split("").toList).toList
+			source =>
+				source.mkString.split("\n").map(expression =>
+					expression.replace(" ", "").split("").toList).toList
 		}
 		expressions match {
 			case Success(expressions) =>
