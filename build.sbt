@@ -4,6 +4,6 @@ version := "0.1"
 
 scalaVersion := "2.13.4"
 
-mainClass in(Compile, run) := Some("com.adventofcode.Puz23")
+mainClass in(Compile, run) := Some("com.adventofcode.Puz24")
 
 fork in run := true
